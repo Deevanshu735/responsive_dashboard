@@ -1,0 +1,199 @@
+.card1 {
+  margin: 10px 0px;
+  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.2);
+  border: none;
+  width: 100%;
+}
+
+.heading {
+  text-align: center;
+  font-size: calc(0.9rem + 0.5vw); /* Scales based on viewport width */
+  margin: 7px;
+}
+
+.heading2 {
+  margin: 0px;
+  text-align: center;
+  font-size: calc(1rem + 0.8vw); /* Larger scaling for heading2 */
+}
+
+.spanc {
+  color: red !important;
+}
+
+.toggle-container {
+  display: flex;
+  background-color: #f1f1f1;
+  border-radius: 25px;
+  width: 320px;
+  padding: 3px;
+}
+
+.center-container {
+  margin: 10px;
+  display: flex;
+  justify-content: center; /* Horizontally center the content */
+}
+
+.toggle-btn {
+  width: 160px;
+  background-color: transparent;
+  border: none;
+  border-radius: 25px;
+  padding: 3px 8px;
+  cursor: pointer;
+  font-size: calc(0.7rem + 0.2vw); /* Responsive font size */
+  font-weight: 600;
+  color: black;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.toggle-btn.active {
+  background-color: white !important;
+  color: #1a73e8 !important; /* Blue color for active state */
+  font-weight: bold;
+}
+
+.toggle-container .toggle-btn:first-child {
+  margin-right: 10px;
+}
+
+.toggle-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Add media queries for further control */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 1rem; /* Smaller font size for smaller screens */
+  }
+  .heading2 {
+    font-size: 1.5rem;
+  }
+  .toggle-btn {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .toggle-container {
+    width: 100%; /* Full width on very small screens */
+  }
+  .toggle-btn {
+    font-size: 0.8rem; /* Adjust button text size */
+  }
+}
+.blogs {
+  justify-content: space-around;
+}
+.card3 {
+  border: none;
+  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
+  overflow: hidden;
+  height: auto; /* Allow height to adjust automatically */
+  width: 100%; /* Use a percentage for responsiveness */
+  max-width: 280px; /* Limit the maximum size */
+  aspect-ratio: 3 / 4; /* Maintain a consistent aspect ratio */
+  margin: 20px auto; /* Center card in its container */
+  overflow-y: auto;
+  scrollbar-width: none; /* Hide scrollbar */
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+  .card3 {
+    width: 95%; /* Slightly larger on small screens */
+    max-width: 250px; /* Reduce max size */
+  }
+}
+
+@media (max-width: 480px) {
+  .card3 {
+    width: 100%; /* Full width for very small screens */
+    max-width: none; /* Remove maximum size */
+    border-radius: 20px; /* Adjust radius for smaller cards */
+  }
+}
+
+/* Unpublish Blogs  */
+.imgstyle {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.card4 {
+  border: none;
+  padding: 15px;
+}
+.button2 {
+  display: flex;
+}
+.button2 div {
+  text-align: center;
+  margin: 0px 7px 0px 0px;
+  font-size: 14px;
+  color: #0363e8;
+  padding: 3px;
+  width: 80px;
+  border-radius: 30px;
+  background-color: #d3eeff;
+}
+
+.font1 {
+  font-size: calc(1rem + 0.2vw); /* Scales font size with viewport width */
+  font-weight: 550;
+  margin: 1px;
+}
+
+.font2 {
+  font-size: calc(0.8rem + 0.1vw); /* Slightly smaller scaling */
+  margin: 1px;
+
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+  .font1 {
+    font-size: 1rem; /* Fixed size for smaller screens */
+    font-weight: 550;
+  }
+  .font2 {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .font1 {
+    margin-top: 5px;
+    font-size: 1.2rem; /* Smaller font size on very small screens */
+    font-weight: 700;
+  }
+  .font2 {
+    font-size: 0.9rem;
+  }
+}
+
+.readmore {
+  margin: 9px;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(26, 115, 232, 0.7); /* Subtle shadow with no border effect */
+  border-radius: 25px;
+  width: 155px !important;
+  padding: 2px;
+}
+.readtext {
+  width: 150px;
+  border: none;
+  border-radius: 25px;
+  background-color: #0363e8;
+  padding: 2px 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  transition: all 0.3s ease;
+  text-align: center;
+}
