@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+.navcal{
+    display: block !important;
+    margin-right: 20px !important;
+    overflow: hidden;
+    animation: scrollTe 10s linear infinite;
+}
+
+@keyframes scrollTe {
+    0% {
+      transform: translateX(70%);
+    } /* Start from right outside */
+    100% {
+      transform: translateX(-100%);
+    } /* Move to the left outside */
+  }
+.naviconsty{
+    text-align: center;
+    height: 35px;
+    font-size: 1.5rem;
+    color: #575757;
+    background-color: none;
+    margin: auto;
+
+}
+.naviconstyl{
+    height: 40px;
+    width: 40px;
+    font-size: 1.3rem;
+    text-align: center;
+    border-radius: 50% !important;
+}
+.iconi{
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}

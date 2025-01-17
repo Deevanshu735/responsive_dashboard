@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { FaBell } from "react-icons/fa";
-import iconimag from "../assest/images/usericon.png";
-import { Container } from "react-bootstrap";
-import { Image } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import "./Navbar.css";
+import { Container, Image } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
+import image from "./userImage.png";
 import { app } from "../../firebase";
 import { collection, doc, getDoc, getFirestore } from 'firebase/firestore';
-import "../styles/main.css";
 
-export default function Navbar() {
+function Navbar() {
   const cardstyle = {
     marginTop: "2px",
     borderRadius: "5px",
@@ -48,29 +48,25 @@ export default function Navbar() {
   }, []);
 
 
-
   return (
-    <>
-      <Container className="sticky-header cardstyle" style={cardstyle} fluid>
-        <Container fluid>
-          <div className="scroll-container">
-            <h5 style={{ margin: "0px", color: "#191970" }}>Happy Birthday</h5>
-            <h5 style={{ margin: "0px", color: "#191970" }}> {name ? `${dob} ${name}` : 'Loading...'}</h5>
-          </div>
-        </Container>
-        <span className="d-flex gap-2 me-2">
-          <div className="naviconstyle">
-            <FaBell style={{ color: "white" }} />
-          </div>
-          <div className="naviconstyle2">
-            <Image className="iconimgs" src={iconimag} roundedCircle />
-          </div>
-          {/* Display error if fetching fails */}
-          {error && <p className="error-message">{error}</p>}
-
-
-        </span>
+    <Container className="sticky-header cardstyle" style={cardstyle} fluid>
+      <Container fluid>
+        <div className="scroll-container">
+          <h5 style={{ margin: "0px", color: "#191970" }}>Happy Birthday</h5>
+          <h5 style={{ margin: "0px", color: "#191970" }}> {name ? `${dob} ${name}` : 'Loading...'}</h5>
+        </div>
       </Container>
-    </>
+      <span className="d-flex gap-3 me-2">
+        <div className="naviconsty">
+          <FontAwesomeIcon icon={faBell} style={{ color: "black" }} />
+        </div>
+        <div className="naviconstyl">
+          <Image className="iconi" src={image} roundedCircle />
+        </div>
+      </span>
+    </Container>
+
   );
 }
+
+export default Navbar;

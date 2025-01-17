@@ -26,9 +26,11 @@ import { FaArrowLeft } from "react-icons/fa";
 import Employeelist from "./Employeelist";
 import Dashboard from "./Dashboard";
 import "../styles/main.css";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Image } from "react-bootstrap";
 import React from "react";
 import OurBlogs from "./OurBlogs";
+import CalenderPage from "../Calender/CalenderPage";
+import imglogo from "../assest/images/atslogo.png";
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -97,7 +99,7 @@ export default function Sidebar() {
       icon: <MdFolderShared />,
     },
     {
-      section: "monthlycalender",
+      section: "monthlycalendar",
       label: "Monthly Calendar",
       icon: <SlCalender />,
     },
@@ -157,6 +159,8 @@ export default function Sidebar() {
         return <Employeelist />;
       case "ourblogs":
         return <OurBlogs />;
+      case "monthlycalendar":
+        return <CalenderPage />;
       case "logout":
         navigate("/");
         return null;
@@ -173,7 +177,7 @@ export default function Sidebar() {
         <Col className="d-block d-md-none p-0 m-0 ">
           <Offcanvas className="offcanvas" show={show} onHide={handleClose}>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title className="logostyle">LOGO</Offcanvas.Title>
+              <Image className="logostyle" src={imglogo} />
             </Offcanvas.Header>
             <Nav className="flex-column mt-4 offsidebar">
               {menuItems.map((item, index) => (
@@ -353,7 +357,7 @@ export default function Sidebar() {
             </Nav.Link>
             <Nav.Link
               className="list-item"
-              onClick={() => setActiveSection("monthlycalender")}
+              onClick={() => setActiveSection("monthlycalendar")}
             >
               <SlCalender
                 className="icon"

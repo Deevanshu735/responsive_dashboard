@@ -7,6 +7,7 @@
   z-index: 10;
   padding: 5px 0;
 }
+
 .naviconstyle {
   height: 35px;
   width: 35px;
@@ -14,6 +15,7 @@
   font-size: 1.3rem;
   background-color: skyblue;
 }
+
 .naviconstyle2 {
   height: 40px;
   width: 40px;
@@ -38,54 +40,51 @@
 
 .fontsize5 {
   font-weight: 546;
-  font-size: clamp(
-    1.1rem,
-    1.2vw,
-    1.3rem
-  ); /* Title: Scales from 16px to 19.2px */
+  font-size: clamp(1.1rem,
+      1.2vw,
+      1.3rem);
+  /* Title: Scales from 16px to 19.2px */
 }
 
 .fontsize9 {
-  font-size: clamp(
-    1rem,
-    1.1vw,
-    1.2rem
-  ) !important; /* Scales from 12.8px to 16px */
+  font-size: clamp(1rem,
+      1.1vw,
+      1.2rem) !important;
+  /* Scales from 12.8px to 16px */
 }
 
 .fontsize3 {
-  font-size: clamp(
-    1rem,
-    1.2vw,
-    1.3rem
-  ) !important; /* Scales from 12.8px to 16px */
+  font-size: clamp(1rem,
+      1.2vw,
+      1.3rem) !important;
+  /* Scales from 12.8px to 16px */
 }
 
 .fontsize4 {
-  font-size: clamp(
-    0.95rem,
-    1vw,
-    1rem
-  ) !important; /* Labels: Scales from 13.6px to 16px */
+  font-size: clamp(0.95rem,
+      1vw,
+      1rem) !important;
+  /* Labels: Scales from 13.6px to 16px */
 }
 
 .fontsize2 {
-  font-size: clamp(
-    0.9rem,
-    0.9vw,
-    0.9rem
-  ) !important; /* Supporting Text: Scales from 12px to 14.4px */
+  font-size: clamp(0.9rem,
+      0.9vw,
+      0.9rem) !important;
+  /* Supporting Text: Scales from 12px to 14.4px */
 }
 
 .fontsize6 {
   font-size: 82% !important;
 }
+
 .mainh {
   font-size: 110% !important;
   padding: 0px !important;
   margin: 1px !important;
-  font-weight: 800 !important;
+  font-weight: 550 !important;
 }
+
 /* .fontsize5 {
   font-weight: 550;
   font-size: 17px;
@@ -99,6 +98,7 @@
 .offcanvas {
   font-family: outfit !important;
 }
+
 .logostyle {
   font-size: 2rem;
   font-weight: bold;
@@ -106,6 +106,7 @@
   color: #0363e8;
   transition: color 0.3s;
 }
+
 .logostyle:hover {
   color: #0363e8;
 }
@@ -113,15 +114,19 @@
 .list-item {
   color: black !important;
   display: flex;
-  align-items: center; /* Align items horizontally in the center */
+  align-items: center;
+  /* Align items horizontally in the center */
 }
+
 .list-item:hover {
   background-color: #0363e8 !important;
   color: white !important;
 }
+
 h1 {
   text-align: center;
 }
+
 .sidebar {
   display: block;
   overflow-y: auto !important;
@@ -148,10 +153,14 @@ h1 {
 @keyframes scrollText {
   0% {
     transform: translateX(70%);
-  } /* Start from right outside */
+  }
+
+  /* Start from right outside */
   100% {
     transform: translateX(-100%);
-  } /* Move to the left outside */
+  }
+
+  /* Move to the left outside */
 }
 
 .renderContent {

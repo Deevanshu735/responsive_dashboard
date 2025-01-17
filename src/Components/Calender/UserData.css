@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+.usertext{
+    color:#585858;
+}
+
+.sheet{
+    border-radius: 19px;
+
+}
+  

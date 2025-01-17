@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Table } from "react-bootstrap";
 import { SlCalender } from "react-icons/sl";
@@ -10,7 +10,18 @@ import user1 from "../assest/images/user1 1.png";
 import "../styles/main.css";
 import Navbar from "./Navbar";
 
+// firebase connection
+import { app } from "../../firebase"; // Import the Firestore instance
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
+
 export default function Dashboard() {
+  // styles
   const card1 = {
     backgroundImage: "linear-gradient(to right,#0363E8,#7DAFF3)",
     boxShadow: "0px 2px 4px 1px rgba(0, 0, 0, 0.2)",
@@ -132,6 +143,156 @@ export default function Dashboard() {
     objectFit: "cover",
     margin: "5px 5px 5px 0px ",
   };
+
+  // Firebase handling
+  // main 3 cards
+
+  const [totalEmployees, setTotalEmployees] = useState(0);
+  const [facultyData, setFacultyData] = useState([]);
+  const [attendanceData, setAttendanceData] = useState({
+    checkIn: 0,
+    checkOut: 0,
+    leaves: 0,
+  });
+  const [error, setError] = useState(null);
+
+  const userId = "Pr3XnIy8GB4ynS4NBpHN";
+  const userId2 = "sBUgTTi5AE6aJdoudDIB";
+
+  // Fetch the number of employees from Firestore on component mount
+  useEffect(() => {
+    const fetchTotalEmployees = async () => {
+      try {
+        const db = getFirestore(app);
+        const querySnapshot = await getDocs(collection(db, "faculty"));
+        try {
+          const docSnap = await getDocs(querySnapshot);
+          const data = docSnap.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setFacultyData(data);
+        } catch (error) {
+          setError("Failed to load faculty data.");
+          console.log(error);
+        }
+        setTotalEmployees(querySnapshot.size); // Get the number of employees
+      } catch (error) {
+        console.error("Error fetching data from Firestore: ", error);
+      }
+    };
+
+    // Fetch attendance data for a specific user
+    const fetchAttendanceData = async () => {
+      try {
+        const db = getFirestore(app);
+        const docRef = doc(db, "faculty", userId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setAttendanceData({
+            checkIn: data.checkIn || 0,
+            checkOut: data.checkOut || 0,
+            leaves: data.leaves || 0,
+          });
+        } else {
+          console.log("No attendance data found for this user.");
+        }
+      } catch (error) {
+        console.error("Error fetching attendance data: ", error);
+      }
+    };
+
+    fetchTotalEmployees();
+    fetchAttendanceData();
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
+
+  // Employee list
+  // State variables to store fetched data
+  const [employeeList, setEmployeeList] = useState([]);
+  const [holidays, setHolidays] = useState([]);
+  const [errore, setErrore] = useState(null);
+
+  // Fetch data from Firebase Realtime Database on component mount
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const db = getFirestore(app);
+    const docRef = collection(db, "faculty");
+    try {
+      const docSnap = await getDocs(docRef);
+      const data = docSnap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setEmployeeList(data);
+    } catch (error) {
+      setError("Failed to load faculty data.");
+      console.log(error);
+    }
+  };
+
+  // New Joiner Candidate
+  const [candidates, setCandidates] = useState([]);
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  // Function to format date as 'dd-month_name-yyyy'
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp.seconds * 1000);
+    const day = String(date.getDate()).padStart(2, "0"); // Ensure two-digit day
+    const month = date.toLocaleString("default", { month: "long" }); // Full month name
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
+  // Fetch candidates data from Firebase
+  const fetchCandidates = async () => {
+    try {
+      const db = getFirestore(app);
+      const querySnapshot = await getDocs(collection(db, "faculty"));
+
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      // Set the fetched candidates data to state
+      setCandidates(data);
+    } catch (error) {
+      console.error("Error fetching candidates data: ", error);
+    }
+  };
+
+  // Sort candidates by Joining Date
+  const sortCandidates = (order) => {
+    const sortedCandidates = [...candidates].sort((a, b) => {
+      const dateA = a.Joining ? new Date(a.Joining.seconds * 1000) : new Date();
+      const dateB = b.Joining ? new Date(b.Joining.seconds * 1000) : new Date();
+
+      if (order === "asc") {
+        return dateA - dateB; // Ascending order (earliest date first)
+      } else {
+        return dateB - dateA; // Descending order (latest date first)
+      }
+    });
+    setCandidates(sortedCandidates);
+  };
+
+  // Effect to fetch data when the component mounts
+  useEffect(() => {
+    fetchCandidates(); // Fetch data from Firestore
+  }, []);
+
+  // Effect to sort candidates when sortOrder changes
+  useEffect(() => {
+    if (candidates.length > 0) {
+      sortCandidates(sortOrder);
+    }
+  }, [sortOrder, candidates]);
+
   return (
     // Dashboard Navbar
     <Container style={{ margin: "0px", padding: "0px", height: "auto" }} fluid>
@@ -147,7 +308,7 @@ export default function Dashboard() {
               <Row xs={12} sm={12} md={12} lg={12}>
                 <Col xs={9} sm={9} lg={9} md={8}>
                   <h5>Employees</h5>
-                  <h5>50/55</h5>
+                  <h5> {totalEmployees}/55</h5>
                 </Col>
                 <Col xs={3} sm={3} lg={3} md={4}>
                   <Image className="iconimgs" src={employee} roundedCircle />
@@ -182,11 +343,16 @@ export default function Dashboard() {
               <Row xs={12} sm={12} md={12} lg={12}>
                 {" "}
               </Row>
-              <Row>
-                <Col>
+              <Row lg={12}>
+                <Col xs={10} sm={10} lg={10} md={10}>
                   <h5>Check In</h5>
                   <h5>Check Out</h5>
                   <h5>Leaves</h5>
+                </Col>
+                <Col xs={2} sm={2} lg={2} md={2}>
+                  <h5>{attendanceData.checkIn}</h5>
+                  <h5>{attendanceData.checkOut}</h5>
+                  <h5>{attendanceData.leaves}</h5>
                 </Col>
               </Row>
               <Row xs={12} sm={12} md={12} lg={12}>
@@ -229,26 +395,14 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>Tomy</td>
-                  <td>Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <td>Tomy</td>
-                  <td>Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+                {employeeList.map((faculty, index) => (
+                  <tr key={index}>
+                    <td>{faculty.Name}</td>
+                    <td>{faculty.EmployeeID}</td>
+                    <td>{faculty.Profile}</td>
+                  </tr>
+                ))}
+
                 <tr>
                   <td style={{ background: "#F3F6F9" }} colSpan={3}>
                     <a
@@ -494,13 +648,16 @@ export default function Dashboard() {
               <Col className="mr-0 p-0" xs={3} lg={3}>
                 <span>
                   <a
+                    onClick={() =>
+                      setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+                    }
                     style={{
                       marginRight: "0px",
                       color: "blue",
                       textDecoration: "underline",
                       textAlign: "center",
                     }}
-                    href="/"
+                    href="##"
                   >
                     View All
                   </a>
@@ -509,73 +666,43 @@ export default function Dashboard() {
             </Row>
             <Card style={{ border: "none" }}>
               <Row className="newjoiner">
-                <Card className="row4card1" style={row4card1style}>
-                  <Row xs={12} md={12} lg={12} sm={12}>
-                    <Col xs={3} sm={2} lg={2} md={3}>
-                      {" "}
-                      <Image className="iconimgs" src={user1} roundedCircle />
-                    </Col>
-                    <Col
-                      style={{ alignContent: " center" }}
-                      xs={9}
-                      sm={10}
-                      lg={10}
-                      md={9}
-                    >
-                      {" "}
-                      <span className="fontsize3">Dianna russel </span>
-                      <br />
-                      <span className="fontsize2">ID-ATS 28384982</span>
-                    </Col>
-                  </Row>
-                </Card>
-
-                {/* our recent  blogs  */}
-                <Card style={row4card2style}>
-                  <Row xs={12} md={12} lg={12} sm={12}>
-                    <Col xs={3} sm={2} lg={2} md={3}>
-                      {" "}
-                      <Image
-                        className="iconimgs"
-                        src={employee}
-                        roundedCircle
-                      />
-                    </Col>
-                    <Col
-                      style={{ alignContent: " center" }}
-                      xs={9}
-                      sm={3}
-                      md={9}
-                      lg={10}
-                    >
-                      {" "}
-                      <span className="fontsize3">Lorem Ipsum </span>
-                      <br />
-                      <span className="fontsize2">ID-ATS 838429</span>
-                    </Col>
-                  </Row>
-                </Card>
-                <Card style={row4card3style}>
-                  <Row xs={12} md={12} lg={12} sm={12}>
-                    <Col xs={3} sm={2} lg={2} md={3}>
-                      {" "}
-                      <Image className="iconimgs" src={user1} roundedCircle />
-                    </Col>
-                    <Col
-                      style={{ alignContent: " center" }}
-                      className="text-align-center"
-                      xs={9}
-                      sm={10}
-                      lg={10}
-                      md={9}
-                    >
-                      {" "}
-                      <span className="fontsize3">Russel Dianna </span>
-                      <br />
-                      <span className="fontsize2">ID-ATS 739439</span>
-                    </Col>
-                  </Row>
-                </Card>
+                {candidates.map((faculty, index) => (
+                  <Card
+                    key={index}
+                    className={`row4card${index + 1}`}
+                    style={
+                      index === 0
+                        ? row4card1style
+                        : index === 1
+                          ? row4card2style
+                          : row4card3style
+                    }
+                  >
+                    <Row xs={12} md={12} lg={12} sm={12}>
+                      <Col xs={3} sm={2} lg={2} md={3}>
+                        {/* Different image for the center card */}
+                        <Image
+                          className="iconimgs"
+                          src={index === 1 ? employee : user1}
+                          roundedCircle
+                        />
+                      </Col>
+                      <Col
+                        style={{ alignContent: "center" }}
+                        xs={9}
+                        sm={10}
+                        lg={10}
+                        md={9}
+                      >
+                        <span className="fontsize3">{faculty.Name}</span>
+                        <br />
+                        <span className="fontsize2">
+                          ID - {faculty.EmployeeID}
+                        </span>
+                      </Col>
+                    </Row>
+                  </Card>
+                ))}
               </Row>
             </Card>
 
