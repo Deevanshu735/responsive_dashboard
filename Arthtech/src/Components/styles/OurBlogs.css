@@ -1,0 +1,190 @@
+.card1 {
+  margin: 10px 0px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border: none;
+  width: 100%;
+}
+
+.heading {
+  text-align: center;
+  font-size: calc(0.9rem + 0.5vw); /* Scales based on viewport width */
+  margin: 7px;
+}
+
+.heading2 {
+  margin: 0px;
+  text-align: center;
+  font-size: calc(1rem + 0.8vw); /* Larger scaling for heading2 */
+}
+
+.spanc {
+  color: red !important;
+}
+
+.toggle-container {
+  display: flex;
+  background-color: #f1f1f1;
+  border-radius: 25px;
+  width: 320px;
+  padding: 3px;
+}
+
+.center-container {
+  margin: 10px;
+  display: flex;
+  justify-content: center; /* Horizontally center the content */
+}
+
+.toggle-btn {
+  width: 160px;
+  background-color: transparent;
+  border: none;
+  border-radius: 25px;
+  padding: 3px 8px;
+  cursor: pointer;
+  font-size: calc(0.7rem + 0.2vw); /* Responsive font size */
+  font-weight: 600;
+  color: black;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.toggle-btn.active {
+  background-color: white !important;
+  color: #1a73e8 !important; /* Blue color for active state */
+  font-weight: bold;
+}
+
+.toggle-container .toggle-btn:first-child {
+  margin-right: 10px;
+}
+
+.toggle-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Add media queries for further control */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 1rem; /* Smaller font size for smaller screens */
+  }
+  .heading2 {
+    font-size: 1.5rem;
+  }
+  .toggle-btn {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .toggle-container {
+    width: 100%; /* Full width on very small screens */
+  }
+  .toggle-btn {
+    font-size: 0.8rem; /* Adjust button text size */
+  }
+}
+.blogs {
+  justify-content: space-around;
+}
+.card3 {
+  overflow: hidden;
+  padding: 25px 15px;
+  border: none !important;
+  margin: 13px 0px !important;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  background-color: #ffffff !important;
+  display: block;
+}
+
+.card4 {
+  margin: 10px 10px !important;
+}
+.imgstyle {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  padding: 10px 0px !important;
+}
+.font1 {
+  font-size: calc(1rem + 0.2vw); /* Scales font size with viewport width */
+  font-weight: 550;
+  margin: 4px 2px;
+}
+.font2 {
+  font-size: calc(0.71rem + 0.1vw); /* Slightly smaller scaling */
+  margin: 1px;
+}
+
+.button2 {
+  width: 80px;
+  border: none;
+  border-radius: 5px;
+  background-color: #c4dcf4;
+  padding: 2px 6px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #0363e8;
+  transition: all 0.3s ease;
+  margin: 7px;
+}
+
+.button3 {
+  width: 80px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0363e8;
+  padding: 2px 6px;
+  cursor: pointer;
+  font-size: 15px;
+  color: white;
+  transition: all 0.3s ease;
+  margin: 7px;
+}
+
+.button4 {
+  width: 80px;
+  border: 1px solid #0363e8;
+  border-radius: 5px;
+  background-color: white;
+  padding: 2px 6px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #0363e8;
+  transition: all 0.3s ease;
+  margin: 7px;
+}
+
+.card5 {
+  padding: 20px;
+  margin: 0px !important;
+  border: none !important;
+  /* box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.2); */
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.imgs {
+  height: 180px !important;
+  width: 180px !important;
+  object-fit: cover;
+}
+.savebutton {
+  padding: 7px !important;
+  width: 100%;
+  border: none;
+}
+.fab {
+  background-color: white !important;
+  position: fixed !important;
+  right: 1vw !important;
+  bottom: 2vh !important;
+}
+.fab:hover {
+  background-color: #f1f1f1 !important;
+}
+.addicon {
+  color: #0363e8 !important;
+  font-size: 2.2rem !important;
+}
