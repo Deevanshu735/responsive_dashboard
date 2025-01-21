@@ -1,38 +1,84 @@
-import React from "react";
-import { FaBell } from "react-icons/fa";
-import iconimag from "../assest/images/usericon.png";
+import React, { useEffect, useState } from "react";
+import { LuBellDot } from "react-icons/lu";
+import iconimag from "../assest/images/logo.jpeg";
+import { RiSettingsLine } from "react-icons/ri";
 import { Container } from "react-bootstrap";
 import { Image } from "react-bootstrap";
+import { app } from "../../firebase";
+import vector from "../assest/images/Vector.png"
+import { collection, doc, getDoc, getFirestore } from "firebase/firestore";
 import "../styles/main.css";
 
 export default function Navbar() {
   const cardstyle = {
-    marginTop: "2px",
     borderRadius: "5px",
     border: "none",
     height: "60px",
     overflow: "hidden",
-    boxShadow: "0px 2px 4px 1px rgba(0, 0, 0, 0.2)",
+    boxShadow:
+      " rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
     display: "flex",
-    fontSize: "1rem",
     alignItems: "center",
   };
+
+  const [name, setUsername] = useState("");
+  const [dob, setDob] = useState("");
+  const [error, setError] = useState(null);
+
+  const fetchUsername = async () => {
+    try {
+      const db = getFirestore(app);
+      const docRef = doc(db, "faculty", "YHP5neJWtHJ2o5Ti5yhS"); // Specify the document ID here
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setUsername(data.Name);
+        setDob(data.DOB);
+      } else {
+        console.log("No attendance data found for this user.");
+      }
+    } catch (error) {
+      console.error("Error fetching attendance data: ", error);
+      setError("Failed to fetch data");
+    }
+  };
+
+  useEffect(() => {
+    fetchUsername();
+  }, []);
+
   return (
     <>
-      <Container className="sticky-header cardstyle" style={cardstyle} fluid>
-        <Container fluid>
+      <Container
+        className="sticky-header cardstyle mt-xs-0 mt-lg-2 mt-md-2"
+        style={cardstyle}
+        fluid
+      >
+        <span className="fs-2 m-3">
+          <Image src={vector} />
+        </span>
+        <Container className="p-0" fluid>
           <div className="scroll-container">
-            <h5 style={{ margin: "0px", color: "#191970" }}>Happy Birthday</h5>
-            <h5 style={{ margin: "0px", color: "#191970" }}>9 November</h5>
+            <p style={{ margin: "0px", padding: "0px" }}>Happy Birthday</p>
+            <p style={{ margin: "0px", padding: "0px" }}>
+              {" "}
+              {name ? `${dob} ${name}` : "Loading..."}
+            </p>
           </div>
         </Container>
-        <span className="d-flex gap-2 me-2">
+        <span className="d-flex gap-2 me-lg-5 me-1 ">
           <div className="naviconstyle">
-            <FaBell style={{ color: "white" }} />
+            <RiSettingsLine />
+          </div>
+          <div className="naviconstyle">
+            <LuBellDot />
           </div>
           <div className="naviconstyle2">
             <Image className="iconimgs" src={iconimag} roundedCircle />
           </div>
+          {/* Display error if fetching fails */}
+          {error && <p className="error-message">{error}</p>}
         </span>
       </Container>
     </>

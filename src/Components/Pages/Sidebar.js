@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Container, Row, Col, Nav, Offcanvas, Navbar } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Nav,
+  Offcanvas,
+  Navbar,
+  Image,
+} from "react-bootstrap";
 import {
   MdDashboard,
   MdFormatListNumbered,
@@ -14,6 +22,7 @@ import { SlEnvolopeLetter } from "react-icons/sl";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { CiFloppyDisk } from "react-icons/ci";
 import { LuFileStack } from "react-icons/lu";
+import { FaArrowLeft } from "react-icons/fa";
 import {
   FaUser,
   FaFacebook,
@@ -22,13 +31,32 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+import Dashboardsquare from "../assest/images/dashboard-square-01.png"
+import usergroup from "../assest/images/Group 1000004394.png"
+import vectoor from "../assest/images/Vectoor.png"
+import leaves from "../assest/images/icon.png"
+import verification from "../assest/images/Group 1000004368.png"
+import calendar from "../assest/images/calendar-01.png"
+import ycalendar from "../assest/images/ycalendar-01.png"
+import Company from "../assest/images/file-01.png"
+import how from "../assest/images/how.png"
+import group from "../assest/images/Group.png"
+import offer from "../assest/images/Group 21.png"
+import payroll from "../assest/images/cash-01.png"
+import monthly from "../assest/images/monthly.png"
+import logout from "../assest/images/logout-03.png"
+import hr from "../assest/images/Group 25.png"
+import prejoinee from "../assest/images/user-group.png"
+import precre from "../assest/images/precre.png"
+import { MdMenuOpen } from "react-icons/md";
 import Employeelist from "./Employeelist";
 import Dashboard from "./Dashboard";
 import "../styles/main.css";
 import { Button, Card } from "react-bootstrap";
 import React from "react";
 import OurBlogs from "./OurBlogs";
+import CalenderPage from "../Calender/CalenderPage";
+import arthtech from "../assest/images/Arthtech.png";
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -43,8 +71,10 @@ export default function Sidebar() {
   const handleShow = () => setShow(true);
 
   const navoffcavas = {
-    boxShadow: "0px 2px 2px 2px rgba(0, 0, 0, 0.2)",
+    boxShadow:
+      " rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
     borderRadius: "10px",
+    background: "#FFFFFF",
     overflow: "hidden",
     padding: "5px",
     margin: "5px",
@@ -59,7 +89,7 @@ export default function Sidebar() {
     fontSize: isopen ? "1.2rem" : " 1.7rem",
     alignItems: "center",
     fontWeight: isopen ? "normal" : "normal",
-    marginLeft: isopen ? "10px" : "15px",
+    marginLeft: isopen ? "0px" : "15px",
   };
 
   const mlogo = {
@@ -97,7 +127,7 @@ export default function Sidebar() {
       icon: <MdFolderShared />,
     },
     {
-      section: "monthlycalender",
+      section: "monthlycalendar",
       label: "Monthly Calendar",
       icon: <SlCalender />,
     },
@@ -125,7 +155,7 @@ export default function Sidebar() {
     },
     {
       section: "salarycalculation",
-      label: "Salary Calculation",
+      label: "Payroll",
       icon: <GiTakeMyMoney />,
     },
     {
@@ -157,6 +187,8 @@ export default function Sidebar() {
         return <Employeelist />;
       case "ourblogs":
         return <OurBlogs />;
+      case "monthlycalendar":
+        return <CalenderPage />;
       case "logout":
         navigate("/");
         return null;
@@ -173,7 +205,6 @@ export default function Sidebar() {
         <Col className="d-block d-md-none p-0 m-0 ">
           <Offcanvas className="offcanvas" show={show} onHide={handleClose}>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title className="logostyle">LOGO</Offcanvas.Title>
             </Offcanvas.Header>
             <Nav className="flex-column mt-4 offsidebar">
               {menuItems.map((item, index) => (
@@ -234,21 +265,27 @@ export default function Sidebar() {
             </Nav>
           </Offcanvas>
 
-          {/* Offcanvas Toggle Button */}
+          {/* Offcanvas Toggle Button in mobiles top */}
           <Navbar className="d-block d-md-none p-0 m-0">
             <Card style={navoffcavas} className=" d-block w-100">
               <Row xs={12}>
                 <Col xs={9}>
-                  <Nav.Link className="logostyle">LOGO</Nav.Link>
+                  <Image
+                    style={{
+                      maxHeight: "45px",
+                      display: "block",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                    }}
+                    src={arthtech}
+                  />
                 </Col>
                 <Col xs={3}>
-                  <Button
-                    className="m-1"
+                  <MdMenuOpen
+                    style={{ fontSize: "50px", marginRight: "5px" }}
                     variant="primary"
                     onClick={handleShow}
-                  >
-                    Menu
-                  </Button>
+                  />
                 </Col>
               </Row>
             </Card>
@@ -259,45 +296,47 @@ export default function Sidebar() {
         <Col
           xs={12}
           sm={12}
-          md={isopen ? 2 : 1}
+          md={isopen ? 0 : 1}
           lg={isopen ? 2 : 1}
-          className=" d-none d-md-block p-0 m-0 "
+          className=" d-none d-md-block p-0"
         >
           <Row xs={12} lg={12} md={12} sm={12}>
             <Col
-              md={isopen ? 8 : 0}
-              lg={isopen ? 9 : 0}
-              sm={isopen ? 9 : 0}
-              xs={isopen ? 9 : 0}
+              className="p-0"
+            // md={isopen ? 8 : 0}
+            // lg={isopen ? 9 : 0}
+            // sm={isopen ? 9 : 0}
+            // xs={isopen ? 9 : 0}
             >
-              <h3
+              <Image
                 style={{
-                  ...msidebartext,
-                  color: "#0363e8",
-                  justifyContent: "center",
-                  margin: "5px",
-                  display: isopen ? "flex" : "none",
+                  maxHeight: "45px",
+                  display: isopen ? "block" : "none",
+                  margin: "25px auto",
                 }}
-                className="logostle "
-              >
-                LOGO
-              </h3>
+                src={arthtech}
+              />
             </Col>
-            <Col lg={isopen ? 3 : 9} sm={isopen ? 3 : 0} xs={isopen ? 4 : 9}>
+            {/* <Col lg={isopen ? 3 : 9} sm={isopen ? 3 : 0} xs={isopen ? 4 : 9}>
               <span style={toggleicon} className="m-1 fs-4">
                 <FaArrowLeft onClick={toggle} />
               </span>
-            </Col>
+            </Col> */}
           </Row>
 
-          <Nav className=" flex-column mt-3 sidebar">
+          <Nav className="flex-column mt-3 sidebar">
             <Nav.Link
               className="list-item "
               onClick={() => setActiveSection("dashboard")}
             >
-              <MdDashboard
+              {/* <MdDashboard
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={Dashboardsquare}
               />{" "}
               <span style={msidebartext}>Dashboard</span>
             </Nav.Link>
@@ -305,9 +344,14 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("employeelist")}
             >
-              <MdFormatListNumbered
+              {/* <MdFormatListNumbered
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={usergroup}
               />{" "}
               <span style={msidebartext}>Employee List</span>
             </Nav.Link>
@@ -315,9 +359,14 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("devteamattendence")}
             >
-              <MdCoPresent
+              {/* <MdCoPresent
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={vectoor}
               />{" "}
               <span style={msidebartext}>Dev Team Attendance</span>
             </Nav.Link>
@@ -325,9 +374,14 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("salesteamattendence")}
             >
-              <MdCoPresent
+              {/* <MdCoPresent
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={vectoor}
               />{" "}
               <span style={msidebartext}>Sales Team Attendance</span>
             </Nav.Link>
@@ -335,9 +389,14 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("salesteamattendence")}
             >
-              <CiFloppyDisk
+              {/* <CiFloppyDisk
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={leaves}
               />{" "}
               <span style={msidebartext}> Leaves</span>
             </Nav.Link>
@@ -345,19 +404,29 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("employeeverification")}
             >
-              <MdFolderShared
+              {/* <MdFolderShared
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={verification}
               />{" "}
               <span style={msidebartext}> Employee Verification</span>
             </Nav.Link>
             <Nav.Link
               className="list-item"
-              onClick={() => setActiveSection("monthlycalender")}
+              onClick={() => setActiveSection("monthlycalendar")}
             >
-              <SlCalender
+              {/* <SlCalender
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={calendar}
               />{" "}
               <span style={msidebartext}> Monthly Calendar</span>
             </Nav.Link>
@@ -365,9 +434,14 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("yearlycalender")}
             >
-              <SlCalender
+              {/* <SlCalender
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={ycalendar}
               />{" "}
               <span style={msidebartext}> Yearly Calendar</span>
             </Nav.Link>
@@ -375,9 +449,14 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("companypolicy")}
             >
-              <TbListDetails
+              {/* <TbListDetails
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={Company}
               />{" "}
               <span style={msidebartext}> Company Policy</span>
             </Nav.Link>
@@ -385,9 +464,14 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("howtouse")}
             >
-              <PiFloppyDisk
+              {/* <PiFloppyDisk
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={how}
               />{" "}
               <span style={msidebartext}> How To Use</span>
             </Nav.Link>
@@ -395,20 +479,30 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("ourblogs")}
             >
-              <LuFileStack
+              {/* <LuFileStack
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={group}
               />{" "}
-              <span style={msidebartext}> Our Blogs</span>
+              <span style={msidebartext}> Our Website Blogs</span>
             </Nav.Link>
             <hr style={{ border: "1px solid #0513FD" }} />
             <Nav.Link
               className="list-item"
               onClick={() => setActiveSection("offerletter")}
             >
-              <SlEnvolopeLetter
+              {/* <SlEnvolopeLetter
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={offer}
               />{" "}
               <span style={msidebartext}> Offer Letter</span>
             </Nav.Link>
@@ -416,26 +510,41 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("salarycalculation")}
             >
-              <GiTakeMyMoney
+              {/* <GiTakeMyMoney
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={payroll}
               />{" "}
-              <span style={msidebartext}> Salary Calculation</span>
+              <span style={msidebartext}> Payroll</span>
             </Nav.Link>
             <Nav.Link
               className="list-item"
               onClick={() => setActiveSection("salarycalculation")}
             >
-              <GiTakeMyMoney
+              {/* <GiTakeMyMoney
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={monthly}
               />{" "}
               <span style={msidebartext}> Monthly Salary Sheet</span>
             </Nav.Link>
             <Nav.Link className="log " onClick={() => setActiveSection("/")}>
-              <MdLogout
+              {/* <MdLogout
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={logout}
               />{" "}
               <span style={msidebartext}> Logout</span>
             </Nav.Link>
@@ -444,9 +553,14 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("hrcandidate")}
             >
-              <FaUser
+              {/* <FaUser
                 className="icon"
-                style={{ ...msidebarfont, marginRight: "0.4rem" }}
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={hr}
               />{" "}
               <span style={msidebartext}> HR-Candidate-Data</span>
             </Nav.Link>
@@ -454,9 +568,14 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("prejoineelist")}
             >
-              <FaUser
+              {/* <FaUser
                 className="icon"
                 style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={prejoinee}
               />{" "}
               <span style={msidebartext}> Pre-Joinee-List</span>
             </Nav.Link>
@@ -464,9 +583,14 @@ export default function Sidebar() {
               className="list-item"
               onClick={() => setActiveSection("prejoineecredentials")}
             >
-              <FaUser
+              {/* <FaUser
                 className="icon"
-                style={{ ...msidebarfont, marginRight: "0.4rem" }}
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+              />{" "} */}
+              <Image
+                className="icon"
+                style={{ ...msidebarfont, marginRight: "0.5rem" }}
+                src={precre}
               />{" "}
               <span style={msidebartext}> Pre-Joinee-Credentials</span>
             </Nav.Link>
@@ -545,7 +669,7 @@ export default function Sidebar() {
           className="renderContent"
           xs={12}
           sm={12}
-          md={isopen ? 10 : 11}
+          md={isopen ? 12 : 11}
           lg={isopen ? 10 : 11}
         >
           {renderContent()}

@@ -1,4 +1,7 @@
 /* dashboard style */
+.body {
+  scrollbar-width: none !important;
+}
 
 .sticky-header {
   position: sticky;
@@ -7,13 +10,16 @@
   z-index: 10;
   padding: 5px 0;
 }
+
 .naviconstyle {
   height: 35px;
   width: 35px;
   text-align: center;
-  font-size: 1.3rem;
-  background-color: skyblue;
+  font-size: 1.6rem;
+  background-color: transparent;
+  color: #000000;
 }
+
 .naviconstyle2 {
   height: 40px;
   width: 40px;
@@ -26,6 +32,13 @@
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
+  justify-content: center;
+}
+
+.openicon {
+  height: 60px;
+  padding: 0px;
+  object-fit: contain;
 }
 
 .row4c {
@@ -36,62 +49,83 @@
   scrollbar-width: none !important;
 }
 
+@media (max-width: 576px) {
+  .open {
+    height: 390px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .position-card {
+    height: 165px !important;
+  }
+}
+
+
+@media (max-width: 575.98px) {
+  .view-job-col {
+    order: 3 !important;
+
+  }
+}
+
+
+
 .fontsize5 {
-  font-weight: 546;
-  font-size: clamp(
-    1.1rem,
-    1.2vw,
-    1.3rem
-  ); /* Title: Scales from 16px to 19.2px */
+  text-align: left !important;
+  vertical-align: center !important;
+  padding: 0px;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1.2vw, 1.3rem);
+  /* Title: Scales from 16px to 19.2px */
 }
 
 .fontsize9 {
-  font-size: clamp(
-    1rem,
-    1.1vw,
-    1.2rem
-  ) !important; /* Scales from 12.8px to 16px */
+  font-size: 15px !important;
+  /* Scales from 12.8px to 16px */
 }
 
 .fontsize3 {
-  font-size: clamp(
-    1rem,
-    1.2vw,
-    1.3rem
-  ) !important; /* Scales from 12.8px to 16px */
+  font-size: clamp(1rem, 1.2vw, 1.2rem) !important;
+  font-weight: "400px !important";
+  color: "rgba(0, 0, 0, 0.75)";
+  /* Scales from 12.8px to 16px */
 }
 
 .fontsize4 {
-  font-size: clamp(
-    0.95rem,
-    1vw,
-    1rem
-  ) !important; /* Labels: Scales from 13.6px to 16px */
+  font-size: clamp(0.95rem, 1vw, 1rem) !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  /* Labels: Scales from 13.6px to 16px */
 }
 
 .fontsize2 {
-  font-size: clamp(
-    0.9rem,
-    0.9vw,
-    0.9rem
-  ) !important; /* Supporting Text: Scales from 12px to 14.4px */
+  font-size: clamp(0.9rem, 0.9vw, 0.9rem) !important;
+  /* Supporting Text: Scales from 12px to 14.4px */
 }
 
 .fontsize6 {
-  font-size: 82% !important;
+  font-size: clamp(12px, 1.5vw, 14px) !important;
+  font-weight: 400 !important;
+  color: rgba(0, 0, 0, 0.65) !important;
+  margin: 0px !important;
 }
+
 .mainh {
-  font-size: 110% !important;
+  font-size: clamp(19px, 4vw, 22px) !important;
   padding: 0px !important;
   margin: 1px !important;
-  font-weight: 800 !important;
+  font-weight: 500 !important;
 }
-/* .fontsize5 {
-  font-weight: 550;
-  font-size: 17px;
-} */
+
 .job {
-  font-weight: 480;
+  font-size: clamp(13px, 1.5vw, 16px) !important;
+  font-weight: 400;
+}
+
+.job2 {
+  font-size: clamp(12px, 1.4vw, 14px) !important;
+  font-weight: 300;
 }
 
 /* sidebar css */
@@ -99,6 +133,7 @@
 .offcanvas {
   font-family: outfit !important;
 }
+
 .logostyle {
   font-size: 2rem;
   font-weight: bold;
@@ -106,29 +141,39 @@
   color: #0363e8;
   transition: color 0.3s;
 }
+
 .logostyle:hover {
   color: #0363e8;
 }
 
 .list-item {
-  color: black !important;
+  color: rgba(0, 0, 0, 0.65) !important;
+  font-weight: 300 !important;
+  font-size: 16px !important;
   display: flex;
-  align-items: center; /* Align items horizontally in the center */
+  align-items: center;
+  padding: 12px 14px !important;
+
+  /* Align items horizontally in the center */
 }
+
 .list-item:hover {
-  background-color: #0363e8 !important;
-  color: white !important;
+  background-color: rgba(0, 110, 190, 1) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  font-weight: 500;
 }
+
 h1 {
   text-align: center;
 }
+
 .sidebar {
   display: block;
   overflow-y: auto !important;
   font-size: clamp(0.9rem, 1.2vw, 1.5rem) !important;
   scrollbar-width: none !important;
   height: 86vh !important;
-  font-family: outfit !important;
+  font-family: "Kumbh Sans", outfit !important;
 }
 
 .offsidebar {
@@ -143,19 +188,25 @@ h1 {
   margin-right: 20px !important;
   overflow: hidden;
   animation: scrollText 10s linear infinite;
+  font-size: 1rem !important;
+  color: #000000;
+  font-weight: 400 !important;
 }
 
 @keyframes scrollText {
   0% {
     transform: translateX(70%);
-  } /* Start from right outside */
+  }
+
+  /* Start from right outside */
   100% {
     transform: translateX(-100%);
-  } /* Move to the left outside */
+  }
+
+  /* Move to the left outside */
 }
 
 .renderContent {
-  padding: 10px;
   display: block;
   overflow-y: auto !important;
   scrollbar-width: none !important;

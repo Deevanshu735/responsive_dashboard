@@ -1,0 +1,40 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.usertext {
+  color: rgba(88, 88, 88, 1) !important;
+  font-weight: 400 !important;
+  font-size: clamp(13px, 2vw, 18px) !important;
+}
+
+.sheet {
+  border-radius: 19px;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.usertext {
+  color: rgba(88, 88, 88, 1);
+  font-weight: 400;
+  font-size: clamp(13px, 2vw, 16px); /* Adjusted for consistency */
+}
+
+.sheet {
+  border-radius: 19px;
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Matches the thin border from the example */
+  padding: 0.5rem 1rem; /* Adds inner spacing */
+  display: inline-flex; /* Makes it inline and horizontally aligned */
+  align-items: center; /* Centers content vertically */
+  white-space: nowrap; /* Prevents text from wrapping */
+  background-color: white; /* Matches the card's background */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+}

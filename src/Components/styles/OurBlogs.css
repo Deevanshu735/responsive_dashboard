@@ -1,6 +1,7 @@
 .card1 {
   margin: 10px 0px;
-  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   border: none;
   width: 100%;
 }
@@ -92,7 +93,8 @@
   padding: 25px 15px;
   border: none !important;
   margin: 13px 0px !important;
-  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   background-color: #ffffff !important;
   display: block;
 }
@@ -159,7 +161,9 @@
   padding: 20px;
   margin: 0px !important;
   border: none !important;
-  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.2); */
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 .imgs {
   height: 180px !important;
